@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'Arcade';
+    src: url('ARCADE.TTF') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    color: #fff;
+    font-family: 'Arcade', sans-serif;
+    overflow: hidden;
+}
+
+#scene1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.title-container {
+    text-align: center;
+    margin-right: 20px;
+}
+
+.title-text {
+    font-size: 24px;
+    color: #fff;
+    margin: 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.title-text:hover {
+    transform: scale(1.1);
+}
+
+.start-button {
+    font-family: 'Arcade', sans-serif;
+    font-size: 20px;
+    color: #fff;
+    background-color: #ffcc00;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s;
+    margin-left: 20px;
+}
+
+.start-button:hover {
+    transform: scale(1.1);
+}
+
+#sceneImage {
+    max-width: 100%;
+    max-height: 100%;
+    cursor: pointer;
+}
+
+#manifesto-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #000000;
+}
+
+.manifesto-header, .manifesto-body {
+    position: relative;
+    z-index: 1; /* This ensures text stays in foreground */
+}
+
+.manifesto-header {
+    font-size: 72px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.manifesto-header:hover {
+    transform: scale(1.1);
+    color: #ffcc00; /* Change color on hover */
+}
+
+.manifesto-body {
+    font-size: 24px;
+    max-width: 800px;
+    text-align: center;
+    margin: 20px;
+    background: #ffcc00;
+    color: #000000;
+    padding: 20px;
+    border-radius: 10px;
+}
+.barrier {
+    position: absolute;
+    color: red;
+    font-weight: bold;
+    pointer-events: none;
+-   animation: barrierFloat 4s infinite alternate;
++   animation: barrierFloat 8s infinite alternate ease-in-out;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    z-index: -1;
+}
+
+@keyframes barrierFloat {
+    0% { 
+-       transform: translate(0, 0) rotate(0deg) scale(1); 
++       transform: translate(0, 0) rotate(var(--startRotation)) scale(1); 
+    }
+    50% {
+-       transform: translate(var(--moveX), var(--moveY)) rotate(180deg) scale(var(--scale));
++       transform: translate(var(--moveX), var(--moveY)) rotate(var(--midRotation)) scale(var(--scale));
+    }
+    100% { 
+-       transform: translate(calc(var(--moveX) * -1), calc(var(--moveY) * -1)) rotate(360deg) scale(1);
++       transform: translate(calc(var(--moveX) * -1), calc(var(--moveY) * -1)) rotate(var(--endRotation)) scale(1);
+    }
+}
